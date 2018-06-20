@@ -17,12 +17,18 @@ class Post(models.Model):
         auto_now_add=True
     )
 
-    def __str__(self):
-        return self.text[:10]
-
     class Meta:
         verbose_name = _('Заметка')
         verbose_name_plural = _('Заметки')
+
+    def __str__(self):
+        return self.text[:10]
+
+    def like_count(self):
+        return self.postvote_set.filter(value=PostVote.LIKE).count()
+
+    def dislike_count(self):
+        return self.postvote_set.filter(value=PostVote.DISLIKE).count()
 
 
 class PostVote(models.Model):
@@ -49,9 +55,9 @@ class PostVote(models.Model):
         verbose_name=_('Заметка')
     )
 
-    def __str__(self):
-        return '%s %s %s' % (self.author, self.value, self.post)
-
     class Meta:
         verbose_name = _('Оценка заметки')
         verbose_name_plural = _('Оценки заметок')
+
+    def __str__(self):
+        return '%s %s %s' % (self.author, self.value, self.post)
