@@ -37,14 +37,19 @@ class Command(BaseCommand):
                 job=fake.job(),
                 status=fake.sentence()
             )
+        self.stdout.write('Generated users: %s' % options['number_of_users'])
 
+        counter = 0
         for user in User.objects.visitors():
             for i in range(random.randint(0, options['max_posts_per_user'])):
                 Post.objects.create(
                     text=fake.text(),
                     author=user
                 )
+                counter += 1
+        self.stdout.write('Generated posts: %s' % counter)
 
+        counter = 0
         for user in User.objects.visitors():
             for i in range(random.randint(0, options['max_likes_per_user'])):
                 PostVote.objects.create(
@@ -52,3 +57,5 @@ class Command(BaseCommand):
                     author=user,
                     post=random.choice(Post.objects.all())
                 )
+                counter += 1
+        self.stdout.write('Generated post\'s votes : %s' % counter)
