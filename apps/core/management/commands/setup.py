@@ -16,8 +16,9 @@ class Command(BaseCommand):
 
         fake = Faker('ru_RU')
         for i in range(options['number_of_users']):
-            User.objects.create(
+            User.objects.create_user(
                 username=fake.user_name(),
+                password=fake.password(),
                 first_name=fake.first_name(),
                 last_name=fake.last_name(),
                 email=fake.email(),
