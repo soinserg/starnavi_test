@@ -1,20 +1,31 @@
-from django.core.management import BaseCommand
+import random
+
+from django.core.management import BaseCommand, CommandError
 from faker import Faker
 
 from apps.account.models import User
+from apps.post.models import Post, PostVote
 
 
 class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument('number_of_users', type=int)
+        parser.add_argument('max_posts_per_user', type=int)
+        parser.add_argument('max_likes_per_user', type=int)
 
     def handle(self, *args, **options):
+        if options['number_of_users'] < 0 or \
+           options['max_posts_per_user'] < 0 or \
+           options['max_likes_per_user'] < 0:
+            raise CommandError('All args must be non-negative')
+
+        fake = Faker('ru_RU')
+
         try:
             User.objects.get(is_superuser=True)
         except User.DoesNotExist:
-            User.objects.create_superuser('admin', '', 'admin')
+            User.objects.create_superuser('admin', 'admin@dev.com', 'admin')
 
-        fake = Faker('ru_RU')
         for i in range(options['number_of_users']):
             User.objects.create_user(
                 username=fake.user_name(),
@@ -26,3 +37,18 @@ class Command(BaseCommand):
                 job=fake.job(),
                 status=fake.sentence()
             )
+
+        for user in User.objects.visitors():
+            for i in range(random.randint(0, options['max_posts_per_user'])):
+                Post.objects.create(
+                    text=fake.text(),
+                    author=user
+                )
+
+        for user in User.objects.visitors():
+            for i in range(random.randint(0, options['max_likes_per_user'])):
+                PostVote.objects.create(
+                    value=random.choice((-1, 1)),
+                    author=user,
+                    post=random.choice(Post.objects.all())
+                )

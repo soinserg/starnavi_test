@@ -5,9 +5,9 @@ from .models import Post, PostVote
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('author', 'created', 'text')
 
 
 @admin.register(PostVote)
 class PostVoteAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('author', 'value', 'post')
