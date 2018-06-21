@@ -58,6 +58,7 @@ class PostVote(models.Model):
     class Meta:
         verbose_name = _('Оценка заметки')
         verbose_name_plural = _('Оценки заметок')
+        unique_together = ('author', 'post')
 
     def __str__(self):
         return '%s %s %s' % (self.author, self.value, self.post)

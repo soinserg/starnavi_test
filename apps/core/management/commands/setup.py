@@ -52,10 +52,14 @@ class Command(BaseCommand):
         counter = 0
         for user in User.objects.visitors():
             for i in range(random.randint(0, options['max_likes_per_user'])):
-                PostVote.objects.create(
-                    value=random.choice((-1, 1)),
+                post = random.choice(Post.objects.all())
+                obj, created = PostVote.objects.get_or_create(
                     author=user,
-                    post=random.choice(Post.objects.all())
+                    post=post,
+                    defaults={
+                        'value': random.choice((-1, 1))
+                    }
                 )
-                counter += 1
+                if created:
+                    counter += 1
         self.stdout.write('Generated post\'s votes : %s' % counter)
