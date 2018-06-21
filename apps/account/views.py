@@ -18,8 +18,8 @@ class SignUp(FormView):
 
 
 class UserList(ListView):
-    model = User
+    queryset = User.objects.visitors()
 
 
 class UserDetail(DetailView):
-    model = User
+    queryset = User.objects.visitors()
