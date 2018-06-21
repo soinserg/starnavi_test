@@ -126,7 +126,6 @@ LOGIN_REDIRECT_URL = reverse_lazy('core:base')
 LOGOUT_REDIRECT_URL = reverse_lazy('core:base')
 
 
-
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 8,
@@ -141,4 +140,5 @@ REST_FRAMEWORK = {
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'node_modules'),
+    os.path.join(BASE_DIR, 'static'),
 ]

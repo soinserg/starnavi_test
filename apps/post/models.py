@@ -62,3 +62,9 @@ class PostVote(models.Model):
 
     def __str__(self):
         return '%s %s %s' % (self.author, self.value, self.post)
+
+    def post_info(self):
+        return {
+            'like_count': self.post.like_count(),
+            'dislike_count': self.post.dislike_count()
+        }
