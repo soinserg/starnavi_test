@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+  {% if user.get_full_name %}
+    <h1>{{ user.get_full_name }} ({{ user.username }})</h1>
+  {% else %}
+    <h1>{{ user.username }}</h1>
+  {% endif %}
+
+  {% if user.status %}
+    <p>{{ user.status }}</p>
+  {% endif %}
+
+  <dl>
+    <dt>{% trans 'Город' %}</dt>
+    <dd>{{ user.city|default:'---' }}</dd>
+
+    <dt>{% trans 'Професия' %}</dt>
+    <dd>{{ user.job|default:'---' }}</dd>
+  </dl>
+{% endblock %}

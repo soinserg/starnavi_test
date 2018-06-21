@@ -22,7 +22,7 @@
 
       <div class="collapse navbar-collapse" id="navbar">
         <div class="navbar-nav">
-          <a class="nav-item nav-link" href="#">{% trans 'Пользователи' %}</a>
+          <a class="nav-item nav-link" href="{% url 'account:user_list' %}">{% trans 'Пользователи' %}</a>
           <a class="nav-item nav-link" href="#">{% trans 'Заметки' %}</a>
         </div>
 
@@ -42,6 +42,9 @@
     {% block content %}{% endblock %}
   </div>
 
-  {% block javascript %}{% endblock %}
+  {% block javascript %}
+    <script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
+  {% endblock %}
 </body>
 </html>

@@ -1,8 +1,9 @@
 from django.contrib.auth import login
 from django.urls import reverse_lazy
-from django.views.generic import FormView
+from django.views.generic import FormView, ListView, DetailView
 
 from .forms import SignUpForm
+from .models import User
 
 
 class SignUp(FormView):
@@ -14,3 +15,11 @@ class SignUp(FormView):
         user = form.save()
         login(self.request, user)
         return super(SignUp, self).form_valid(form)
+
+
+class UserList(ListView):
+    model = User
+
+
+class UserDetail(DetailView):
+    model = User
