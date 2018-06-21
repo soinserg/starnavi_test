@@ -6,5 +6,6 @@ __pycache__/
 *.sublime-project
 *.sublime-workspace
 .idea/
-media/
+media_root/
+static_root/
 node_modules/

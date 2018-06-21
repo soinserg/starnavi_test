@@ -4,10 +4,13 @@ chardet==3.0.4
 coreapi==2.3.3
 coreschema==0.0.4
 decorator==4.3.0
+dj-database-url==0.5.0
 Django==2.0.6
 django-bootstrap4==0.0.6
+django-heroku==0.3.1
 djangorestframework==3.8.2
 Faker==0.8.16
+gunicorn==19.8.1
 idna==2.7
 ipython==6.4.0
 ipython-genutils==0.2.0
@@ -32,3 +35,4 @@ traitlets==4.3.2
 uritemplate==3.0.0
 urllib3==1.23
 wcwidth==0.1.7
+whitenoise==3.3.1
