@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load i18n bootstrap4 %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <form class="form" method="post">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+        <input type="submit" class="btn btn-primary" value="{% trans 'Войти' %}">
+      </form>
+    </div>
+  </div>
+{% endblock %}
