@@ -129,3 +129,7 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticatedOrReadOnly',
     ),
 }
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'node_modules'),
+]

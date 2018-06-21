@@ -1,0 +1,46 @@
+{% load i18n static %}
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>
+    {% block title %}{% trans 'StarNavi тест' %}{% endblock %}
+  </title>
+  <link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}">
+</head>
+<body>
+  <nav class="navbar navbar-expand-sm navbar-light bg-light mb-2">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        {% trans 'StarNavi тест' %}
+      </a>
+
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#navbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbar">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" href="#">{% trans 'Пользователи' %}</a>
+          <a class="nav-item nav-link" href="#">{% trans 'Заметки' %}</a>
+        </div>
+
+        <div class="navbar-nav ml-auto">
+          {% if request.user.is_authenticated %}
+            <a class="nav-item nav-link" href="#">{% trans 'Выйти' %}</a>
+          {% else %}
+            <a class="nav-item nav-link" href="#">{% trans 'Войти' %}</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    {% block content %}{% endblock %}
+  </div>
+
+  {% block javascript %}{% endblock %}
+</body>
+</html>
