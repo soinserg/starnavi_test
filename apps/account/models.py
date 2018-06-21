@@ -22,3 +22,7 @@ class User(AbstractUser):
     )
 
     objects = UserManager()
+
+    def get_full_name(self):
+        full_name = super().get_full_name()
+        return f'{full_name} ({self.username})' if full_name else self.username

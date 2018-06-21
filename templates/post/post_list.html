@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <ol>
+    {% for post in post_list %}
+      <li><a href="{% url 'post:post_detail' post.pk %}">{{ post.text|truncatewords:5 }}</a></li>
+    {% endfor %}
+  </ol>
+{% endblock %}

@@ -2,11 +2,7 @@
 {% load i18n %}
 
 {% block content %}
-  {% if user.get_full_name %}
-    <h1>{{ user.get_full_name }} ({{ user.username }})</h1>
-  {% else %}
-    <h1>{{ user.username }}</h1>
-  {% endif %}
+  <h1>{{ user.get_full_name }}</h1>
 
   {% if user.status %}
     <p>{{ user.status }}</p>
