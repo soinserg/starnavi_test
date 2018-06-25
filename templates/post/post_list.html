@@ -2,7 +2,7 @@
 {% load bootstrap4 %}
 
 {% block content %}
-  <ol>
+  <ol start="{{ page_obj.start_index }}">
     {% for post in post_list %}
       <li><a href="{% url 'post:post_detail' post.pk %}">{{ post.text|truncatewords:5 }}</a></li>
     {% endfor %}
