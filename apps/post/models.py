@@ -20,6 +20,7 @@ class Post(models.Model):
     class Meta:
         verbose_name = _('Заметка')
         verbose_name_plural = _('Заметки')
+        ordering = ('-created',)
 
     def __str__(self):
         return self.text[:10]

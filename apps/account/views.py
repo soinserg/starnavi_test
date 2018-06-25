@@ -19,6 +19,7 @@ class SignUp(FormView):
 
 class UserList(ListView):
     queryset = User.objects.visitors()
+    paginate_by = 8
 
 
 class UserDetail(DetailView):
